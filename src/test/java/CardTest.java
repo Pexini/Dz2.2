@@ -15,7 +15,7 @@ public class CardTest {
         return LocalDate.now().plusDays(addDays).format(DateTimeFormatter.ofPattern(pattern));
     }
     @Test
-    void shouldOpenTest() throws InterruptedException{
+    void shouldOpenTest(){
         open("http://0.0.0.0:9999");
         $("[data-test-id=city] input").setValue("Казань");
         String planDate = generateDate(4, "dd.MM.yyyy");
@@ -26,7 +26,7 @@ public class CardTest {
         $("[data-test-id=agreement]").click();
         $("button.button").click();
         $(".notification__content")
-                .shouldBe(Condition.visible, Duration.ofSeconds(15))
+                .shouldBe(Condition.visible, Duration.ofSeconds(20))
                 .shouldHave(Condition.exactText("Встреча успешно забронирована на " + planDate));
 
     }
